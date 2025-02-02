@@ -1,0 +1,51 @@
+# dataset params
+root: './data'
+dataset_name: 'chengdu'
+traj_file: 'traj.parquet'
+
+
+mbr:
+  min_lon: 103.92
+  min_lat: 30.56
+  max_lon: 104.21
+  max_lat: 30.79
+
+
+# preprocess params
+preprocess: TRUE
+
+# model params
+cls: TRUE
+
+max_patch_len_s3: 10
+max_patch_len_s2: 45
+
+# Transformer params
+pos_type: 'sincos'
+
+dropout: 0.1
+d_model: 128
+
+n_layers_s5: 2
+n_layers_s3: 4
+n_layers_s2: 2
+n_heads: 4
+dropout: 0.1
+d_ff: 512
+
+# training params
+seed: 42
+batch_size: 256
+lr: 1.0e-4
+optim: 'Adam'
+
+scheduler: 'cos'
+n_epochs: 30
+warmup_epoch: 5
+warmup_lr_init: 1.0e-6
+lr_min: 1.0e-6
+
+
+save_dir: './logs/chengdu'
+save_per: 1
+start_epoch: 0
