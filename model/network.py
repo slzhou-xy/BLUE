@@ -201,7 +201,6 @@ class Encoder(nn.Module):
         x_s5_flatten = x_s5_wo_cls.reshape(-1, x_s5_wo_cls.size(-1))
         x_s5_flatten = x_s5_flatten[~padding_mask]
 
-        # 利用 torch.repeat_interleave 进行张量分割的等价操作
         patch_offsets = torch.cumsum(torch.tensor([0] + patch_len_s3.tolist()[:-1], device=x.device), dim=0)
         patch_indices = torch.repeat_interleave(torch.arange(patch_len_s3.shape[0], device=x.device), patch_len_s3)
 
@@ -215,7 +214,6 @@ class Encoder(nn.Module):
 
         del patch_offsets, patch_indices
 
-        # 填充并对齐 `x_s3`
         traj_cumsum = torch.cumsum(torch.tensor([0] + traj_len_s3[:-1].tolist(), device=x.device), dim=0)
         traj_indices = torch.repeat_interleave(torch.arange(traj_len_s3.shape[0], device=x.device), traj_len_s3)
         max_len = traj_len_s3.max().item()
@@ -244,7 +242,6 @@ class Encoder(nn.Module):
         x_s3_flatten = x_s3_wo_cls.reshape(-1, x_s3_wo_cls.size(-1))
         x_s3_flatten = x_s3_flatten[~padding_mask]
 
-        # 利用 torch.repeat_interleave 进行张量分割的等价操作
         patch_offsets = torch.cumsum(torch.tensor([0] + patch_len_s2.tolist()[:-1], device=x.device), dim=0)
         patch_indices = torch.repeat_interleave(torch.arange(patch_len_s2.shape[0], device=x.device), patch_len_s2)
 
