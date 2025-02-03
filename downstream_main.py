@@ -86,11 +86,9 @@ if __name__ == "__main__":
     parser.add_argument("--transfer", type=bool, default=False)
     parser.add_argument("--transfer_config", type=str, default='chengdu')
 
-    parser.add_argument("--all_datasets", type=bool, default=False)
     parser.add_argument("--config", type=str, default='chengdu')
     parser.add_argument("--exp_id", type=str, default='enlayer242_cross_bz256_epoch30_dim128_attn_1e-4')
     parser.add_argument("--task", type=str, default='similarity')
-    parser.add_argument("--probe_linear", type=bool, default=False)
 
     parser.add_argument("--model_id", type=int, default=29)
     parser.add_argument('--device', type=str, default='cuda:0')
