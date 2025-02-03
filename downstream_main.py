@@ -7,7 +7,7 @@ from utils import Config, init_seeds
 
 
 def read_config(parser_args):
-    with open(parser_args.config, 'r') as f:
+    with open('config/' + parser_args.config + '.yaml', 'r') as f:
         args = yaml.full_load(f)
     for k, v in parser_args.__dict__.items():
         args[k] = v
@@ -17,13 +17,13 @@ def read_config(parser_args):
         if parser_args.config == parser_args.transfer_config:
             raise ValueError('The source and target config files are the same.')
 
-        with open(parser_args.transfer_config, 'r') as f:
+        with open('config/' + parser_args.transfer_config + '.yaml', 'r') as f:
             transfer_args = yaml.full_load(f)
             transfer_args = Config(transfer_args)
             args.root = transfer_args.root
             args.dataset_name = transfer_args.dataset_name
             args.traj_file = transfer_args.traj_file
-            args.task = args.task + '_' + args.config[7:-5] + '2' + args.transfer_config[7:-5]
+            args.task = args.task + '_' + args.config + '2' + args.transfer_config
             args.mbr = transfer_args.mbr
             args.center = transfer_args.center
             args.max_patch_len_s3 = transfer_args.max_patch_len_s3
@@ -84,10 +84,10 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--transfer", type=bool, default=False)
-    parser.add_argument("--transfer_config", type=str, default='config/chengdu.yaml')
+    parser.add_argument("--transfer_config", type=str, default='chengdu')
 
     parser.add_argument("--all_datasets", type=bool, default=False)
-    parser.add_argument("--config", type=str, default='config/chengdu.yaml')
+    parser.add_argument("--config", type=str, default='chengdu')
     parser.add_argument("--exp_id", type=str, default='enlayer242_cross_bz256_epoch30_dim128_attn_1e-4')
     parser.add_argument("--task", type=str, default='similarity')
     parser.add_argument("--probe_linear", type=bool, default=False)

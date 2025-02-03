@@ -45,7 +45,7 @@ def eval(args, ep, model, data_loader, writer=None):
 
 
 def train(parser_args):
-    with open(parser_args.config, 'r') as f:
+    with open('config/' + parser_args.config + '.yaml', 'r') as f:
         args = yaml.full_load(f)
     args['device'] = parser_args.device
     args['exp_id'] = parser_args.exp_id
@@ -137,7 +137,7 @@ if __name__ == "__main__":
     warnings.filterwarnings("ignore")
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", type=str, default='config/porto.yaml')
+    parser.add_argument("--config", type=str, default='porto')
     parser.add_argument("--exp_id", type=str, default='enlayer242_cross_bz256_epoch30_dim128_attn_1e-4')
     parser.add_argument('--device', type=str, default='cuda:0')
     args = parser.parse_args()
