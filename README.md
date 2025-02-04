@@ -69,7 +69,7 @@ python downstream_main.py --config porto --exp_id <SET_YOUR_ID> --task similarit
 
 
 ## Transfer tasks
-When run the model for the downstream tasks, set the same **exp_id** in `train.py` as for pre-training.
+When run the model for the transfer tasks, set the same **exp_id** in `train.py` as for pre-training.
 
 ### Travel Time Estimation (Fine-tuning)
 ```
