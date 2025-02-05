@@ -138,7 +138,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", type=str, default='porto')
-    parser.add_argument("--exp_id", type=str, default='enlayer242_cross_bz256_epoch30_dim128_attn_1e-4')
+    parser.add_argument("--exp_id", type=str, default='enlayer242_cross_bz256_epoch30_dim128_lr1e-4')
     parser.add_argument('--device', type=str, default='cuda:0')
     args = parser.parse_args()
 

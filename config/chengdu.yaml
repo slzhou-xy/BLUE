@@ -21,8 +21,6 @@ max_patch_len_s3: 10
 max_patch_len_s2: 45
 
 # Transformer params
-pos_type: 'sincos'
-
 dropout: 0.1
 d_model: 128
 

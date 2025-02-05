@@ -201,8 +201,8 @@ def get_scheduler(optimizer, args):
         return StepLRScheduler(optimizer=optimizer,
                                decay_rate=args.decay_rate,
                                decay_t=args.decay_t,
-                               #    warmup_t=args.warmup_epoch,
-                               #    warmup_lr_init=args.warmup_lr_init
+                               warmup_t=args.warmup_epoch,
+                               warmup_lr_init=args.warmup_lr_init
                                )
     elif args.scheduler == 'cos_ann':
         return CosineAnnealingLR(optimizer=optimizer, T_max=args.n_epochs, eta_min=args.lr_min)
