@@ -28,6 +28,16 @@ BLUE/
 └── utils.py                 # some utility functions
 ```
 
+## Preprocessing
+The maximum patch length will be counted in the preprocessing, and the maximum patch length need to be set in config after preprocessing. We can also set a large value for the maximum patch length.
+```
+# Chengdu
+python preprocess.py --config Chengdu
+
+# Porto
+python preprocess.py --config Porto
+```
+
 ## Training
 ```
 # Chengdu

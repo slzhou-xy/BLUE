@@ -16,7 +16,8 @@ class DataPreprocess:
         self.dataset_name = args.dataset_name
         self.traj_file = os.path.join(self.root, self.dataset_name, args.traj_file)
         self.data_save_dir = os.path.join(self.root, self.dataset_name)
-        self.max_len = args.max_len
+        self.max_patch_len_s2 = 0
+        self.max_patch_len_s3 = 0
 
     def _get_points_feature(self, gps_seq, time_seq, geodesic):
         assert len(gps_seq) == len(time_seq)
@@ -66,9 +67,6 @@ class DataPreprocess:
             description = f"[red]{desc} preprocess"
             task = progress.add_task(description, total=traj_df.shape[0])
 
-            max_patch_len_s2 = 0
-            max_patch_len_s3 = 0
-
             for i, row in traj_df.iterrows():
                 if i == traj_df.shape[0]:
                     description = "[green]Finished"
@@ -100,10 +98,8 @@ class DataPreprocess:
 
                 progress.update(task, completed=i, description=description)
 
-                max_patch_len_s2 = max(max_patch_len_s2, max(patch_lens_s2))
-                max_patch_len_s3 = max(max_patch_len_s3, max(patch_lens_s3))
-
-            print(f"Max patch len s2: {max_patch_len_s2}, Max patch len s3: {max_patch_len_s3}")
+                self.max_patch_len_s2 = max(self.max_patch_len_s2, max(patch_lens_s2))
+                self.max_patch_len_s3 = max(self.max_patch_len_s3, max(patch_lens_s3))
 
         return total_data
 
@@ -162,6 +158,8 @@ class DataPreprocess:
         test_traj_data = self._get_features(test_traj_df, 'Test ')
         save_pickle(test_traj_data, test_traj_path)
 
+        print(f'max_patch_len_s2: {self.max_patch_len_s2}, max_patch_len_s2: {self.max_patch_len_s3}')
+
         return train_traj_data, eval_traj_data, test_traj_data
 
     def run(self, save_file, raw_file):
@@ -187,12 +185,12 @@ class DataPreprocess:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", type=str, default='./config/chengdu.yaml')
+    parser.add_argument("--config", type=str, default='chengdu')
     opt = parser.parse_args()
 
     yaml_path = opt.config
 
-    with open(yaml_path, 'r') as f:
+    with open('./config/' + yaml_path + '.yaml', 'r') as f:
         opt = yaml.full_load(f)
     opt = Config(opt)
     data_preprocess = DataPreprocess(opt)
