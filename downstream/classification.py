@@ -80,9 +80,6 @@ def eval_fn(ep, model, data_loader, args):
 
 
 def train(args):
-    if args.all_datasets is True:
-        args.save_dir = './logs/all_datasets'
-        args.task = args.task + '_' + args.dataset_name
     pretrained_model_dir = os.path.join(args.save_dir, args.exp_id, 'ckpts')
     log_dir = os.path.join(args.save_dir, args.exp_id, 'task', args.task)
     model_save_dir = os.path.join(args.save_dir, args.exp_id, 'task', args.task)
