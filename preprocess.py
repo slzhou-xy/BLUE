@@ -41,7 +41,7 @@ class DataPreprocess:
         start_index = np.where(diff_mask)[0] + 1
         patch_lens = np.diff(np.concatenate(([0], start_index, [len(gps_seq)])))
 
-        unique_index = np.insert(diff_mask, 0, True)  # 第一个元素总是唯一的
+        unique_index = np.insert(diff_mask, 0, True)
         raw_index = np.where(unique_index)[0]
 
         gps_seq = gps_seq[raw_index]
