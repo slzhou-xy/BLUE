@@ -3,7 +3,6 @@ root: './data'
 dataset_name: 'chengdu'
 traj_file: 'traj.parquet'
 
-
 mbr:
   min_lon: 103.92
   min_lat: 30.56

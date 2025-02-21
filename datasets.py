@@ -18,7 +18,7 @@ class TrajDataset(Dataset):
         return self.data_list[idx]
 
 
-def collate_fn_pretrain(batch_data_list, center, mbr):
+def collate_fn_pretrain(batch_data_list, mbr):
     batch_len = len(batch_data_list)
     traj_len_s5 = [data['traj_len_s5'] for data in batch_data_list]
     max_len_s5 = max(traj_len_s5)
@@ -33,13 +33,11 @@ def collate_fn_pretrain(batch_data_list, center, mbr):
     traj_len_s2 = []
     traj_len_s3 = []
 
-
     for k, data in enumerate(batch_data_list):
         traj_len_s5_k = data['traj_len_s5']
         gps_seq = torch.as_tensor(data['gps_seq'], dtype=torch.float32)
         gps_seq[:, 0] = (gps_seq[:, 0] - mbr['min_lon']) / (mbr['max_lon'] - mbr['min_lon'])
         gps_seq[:, 1] = (gps_seq[:, 1] - mbr['min_lat']) / (mbr['max_lat'] - mbr['min_lat'])
-
 
         time_fea = torch.as_tensor(data['time_fea'], dtype=torch.float32)
         fwd_dist = torch.as_tensor(data['fwd_dist'] / 1000, dtype=torch.float32)
@@ -77,7 +75,7 @@ def collate_fn_pretrain(batch_data_list, center, mbr):
     return data
 
 
-def collate_fn_inference(batch_data_list, center, mbr):
+def collate_fn_inference(batch_data_list, mbr):
     batch_len = len(batch_data_list)
     traj_len_s5 = [data['traj_len_s5'] for data in batch_data_list]
     max_len_s5 = max(traj_len_s5)
@@ -96,7 +94,6 @@ def collate_fn_inference(batch_data_list, center, mbr):
         gps_seq = torch.as_tensor(data['gps_seq'], dtype=torch.float32)
         gps_seq[:, 0] = (gps_seq[:, 0] - mbr['min_lon']) / (mbr['max_lon'] - mbr['min_lon'])
         gps_seq[:, 1] = (gps_seq[:, 1] - mbr['min_lat']) / (mbr['max_lat'] - mbr['min_lat'])
-
 
         time_fea = torch.as_tensor(data['time_fea'], dtype=torch.float32)
         fwd_dist = torch.as_tensor(data['fwd_dist'] / 1000, dtype=torch.float32)
@@ -130,7 +127,7 @@ def collate_fn_inference(batch_data_list, center, mbr):
     return data
 
 
-def collate_fn_cls(batch_data_list, center, mbr):
+def collate_fn_cls(batch_data_list, mbr):
     batch_len = len(batch_data_list)
     traj_len_s5 = [data['traj_len_s5'] for data in batch_data_list]
     max_len_s5 = max(traj_len_s5)
@@ -146,13 +143,11 @@ def collate_fn_cls(batch_data_list, center, mbr):
 
     labels = []
 
-
     for k, data in enumerate(batch_data_list):
         traj_len_s5_k = data['traj_len_s5']
         gps_seq = torch.as_tensor(data['gps_seq'], dtype=torch.float32)
         gps_seq[:, 0] = (gps_seq[:, 0] - mbr['min_lon']) / (mbr['max_lon'] - mbr['min_lon'])
         gps_seq[:, 1] = (gps_seq[:, 1] - mbr['min_lat']) / (mbr['max_lat'] - mbr['min_lat'])
-
 
         time_fea = torch.as_tensor(data['time_fea'], dtype=torch.float32)
         fwd_dist = torch.as_tensor(data['fwd_dist'] / 1000, dtype=torch.float32)
@@ -188,7 +183,7 @@ def collate_fn_cls(batch_data_list, center, mbr):
     return data, torch.as_tensor(labels, dtype=torch.long)
 
 
-def collate_fn_tte(batch_data_list, center, mbr):
+def collate_fn_tte(batch_data_list, mbr):
     batch_len = len(batch_data_list)
     traj_len_s5 = [data['traj_len_s5'] for data in batch_data_list]
     max_len_s5 = max(traj_len_s5)
@@ -204,13 +199,11 @@ def collate_fn_tte(batch_data_list, center, mbr):
 
     labels = []
 
-
     for k, data in enumerate(batch_data_list):
         traj_len_s5_k = data['traj_len_s5']
         gps_seq = torch.as_tensor(data['gps_seq'], dtype=torch.float32)
         gps_seq[:, 0] = (gps_seq[:, 0] - mbr['min_lon']) / (mbr['max_lon'] - mbr['min_lon'])
         gps_seq[:, 1] = (gps_seq[:, 1] - mbr['min_lat']) / (mbr['max_lat'] - mbr['min_lat'])
-
 
         time_seq = data['time_seq']
         labels.append(time_seq[-1] - time_seq[0])
@@ -341,9 +334,9 @@ def get_dataloader(args, task='pretrain'):
         query_dataset = TrajDataset(query_dataset)
 
         database_loader = DataLoader(database_dataset, batch_size=args.batch_size, shuffle=False, pin_memory=True,
-                                     num_workers=8, collate_fn=lambda x: collate_fn_inference(x, args.center, args.mbr))
+                                     num_workers=8, collate_fn=lambda x: collate_fn_inference(x, args.mbr))
         label_loader = DataLoader(label_dataset, batch_size=args.batch_size, shuffle=False, pin_memory=True,
-                                  num_workers=8, collate_fn=lambda x: collate_fn_inference(x, args.center, args.mbr))
+                                  num_workers=8, collate_fn=lambda x: collate_fn_inference(x, args.mbr))
         query_loader = DataLoader(query_dataset, batch_size=args.batch_size, shuffle=False, pin_memory=True,
-                                  num_workers=8, collate_fn=lambda x: collate_fn_inference(x, args.center, args.mbr))
+                                  num_workers=8, collate_fn=lambda x: collate_fn_inference(x, args.mbr))
         return database_loader, label_loader, query_loader
