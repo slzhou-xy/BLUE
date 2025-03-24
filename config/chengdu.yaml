@@ -16,8 +16,8 @@ preprocess: TRUE
 # model params
 cls: TRUE
 
-max_patch_len_s3: 10
-max_patch_len_s2: 45
+# max_patch_len_s3: 10
+# max_patch_len_s2: 45
 
 # Transformer params
 dropout: 0.1
@@ -27,7 +27,6 @@ n_layers_s5: 2
 n_layers_s3: 4
 n_layers_s2: 2
 n_heads: 4
-dropout: 0.1
 d_ff: 512
 
 # training params

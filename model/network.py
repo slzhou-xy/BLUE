@@ -114,8 +114,8 @@ class Encoder(nn.Module):
         n_layers_s2 = args.n_layers_s2
 
         self.patchify = args.patchify
-        self.max_patch_len_s2 = args.max_patch_len_s2
-        self.max_patch_len_s3 = args.max_patch_len_s3
+        # self.max_patch_len_s2 = args.max_patch_len_s2
+        # self.max_patch_len_s3 = args.max_patch_len_s3
         self.cls = args.cls
 
         self.cls_token = None
@@ -204,9 +204,11 @@ class Encoder(nn.Module):
         patch_offsets = torch.cumsum(torch.tensor([0] + patch_len_s3.tolist()[:-1], device=x.device), dim=0)
         patch_indices = torch.repeat_interleave(torch.arange(patch_len_s3.shape[0], device=x.device), patch_len_s3)
 
-        x_s3_padded = x.new_zeros(patch_len_s3.shape[0], self.max_patch_len_s3, d_model)
+        max_patch_len_s3 = patch_len_s3.max().item()
+
+        x_s3_padded = x.new_zeros(patch_len_s3.shape[0], max_patch_len_s3, d_model)
         x_s3_padded[patch_indices, torch.arange(x_s5_flatten.size(0), device=x.device) - patch_offsets[patch_indices]] = x_s5_flatten
-        attn_mask = torch.arange(self.max_patch_len_s3, device=x.device)[None, :] >= patch_len_s3[:, None]
+        attn_mask = torch.arange(max_patch_len_s3, device=x.device)[None, :] >= patch_len_s3[:, None]
         w = self.patch_attn_s3(x_s3_padded)
         w[attn_mask] = float('-inf')
         w = torch.softmax(w, dim=1)
@@ -245,9 +247,11 @@ class Encoder(nn.Module):
         patch_offsets = torch.cumsum(torch.tensor([0] + patch_len_s2.tolist()[:-1], device=x.device), dim=0)
         patch_indices = torch.repeat_interleave(torch.arange(patch_len_s2.shape[0], device=x.device), patch_len_s2)
 
-        x_s2_padded = x.new_zeros(patch_len_s2.shape[0],  self.max_patch_len_s2, d_model)
+        max_patch_len_s2 = patch_len_s2.max().item()
+
+        x_s2_padded = x.new_zeros(patch_len_s2.shape[0], max_patch_len_s2, d_model)
         x_s2_padded[patch_indices, torch.arange(x_s3_flatten.size(0), device=x.device) - patch_offsets[patch_indices]] = x_s3_flatten
-        attn_mask = torch.arange(self.max_patch_len_s2, device=x.device)[None, :] >= patch_len_s2[:, None]
+        attn_mask = torch.arange(max_patch_len_s2, device=x.device)[None, :] >= patch_len_s2[:, None]
         w = self.patch_attn_s2(x_s2_padded)
         w[attn_mask] = float('-inf')
         w = torch.softmax(w, dim=1)

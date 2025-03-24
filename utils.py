@@ -37,7 +37,7 @@ class Config(object):
             lambda p: (not p[0].startswith('__')) and not isinstance(p[1], classmethod),
             dic.items()
         ))
-        return '\n'.join([str(k) + ' = ' + str(v) for k, v in lst])
+        return '\n'.join(['\n' + str(k) + ' = ' + str(v) if i == 0 else str(k) + ' = ' + str(v) for i, (k, v) in enumerate(lst)])
 
 
 class EarlyStopping:
