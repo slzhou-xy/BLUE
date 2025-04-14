@@ -29,22 +29,13 @@ BLUE/
 ```
 
 ## Preprocessing
-The maximum patch length will be counted in the preprocessing, and the maximum patch length need to be set in config after preprocessing. We can also set a large value for the maximum patch length or get the maximum patch length in a batch. 
 ```
-# Chengdu
-python preprocess.py --config Chengdu
-
-# Porto
-python preprocess.py --config Porto
+python preprocess.py --config <SET_CITY>
 ```
 
 ## Training
 ```
-# Chengdu
-python train.py --config chengdu --exp_id <SET_YOUR_ID> --device cuda:0
-
-# Porto
-python train.py --config porto --exp_id <SET_YOUR_ID> --device cuda:0
+python train.py --config <SET_CITY> --exp_id <SET_YOUR_ID> --device cuda:0
 ```
 
 ## Downstream tasks
@@ -52,29 +43,17 @@ When run the model for the downstream tasks, set the same **exp_id** in `train.p
 
 ### Travel Time Estimation (Fine-tuning)
 ```
-# Chengdu
-python downstream_main.py --config chengdu --exp_id <SET_YOUR_ID> --task travel_time --device cuda:0 
-
-# Porto
-python downstream_main.py --config porto --exp_id <SET_YOUR_ID> --task travel_time --device cuda:0 
+python downstream_main.py --config <SET_CITY> --exp_id <SET_YOUR_ID> --task travel_time --device cuda:0 
 ```
 
 ### Trajectory classification (Fine-tuning)
 ```
-# Chengdu
-python downstream_main.py --config chengdu --exp_id <SET_YOUR_ID> --task classification --device cuda:0 
-
-# Porto
-python downstream_main.py --config porto --exp_id <SET_YOUR_ID> --task classification --device cuda:0 
+python downstream_main.py --config <SET_CITY> --exp_id <SET_YOUR_ID> --task classification --device cuda:0 
 ```
 
 ### Most similar trajectory search (No Fine-tuning)
 ```
-# Chengdu
-python downstream_main.py --config chengdu --exp_id <SET_YOUR_ID> --task similarity --device cuda:0 
-
-# Porto
-python downstream_main.py --config porto --exp_id <SET_YOUR_ID> --task similarity --device cuda:0 
+python downstream_main.py --config <SET_CITY> --exp_id <SET_YOUR_ID> --task similarity --device cuda:0 
 ```
 
 
@@ -83,27 +62,15 @@ When run the model for the transfer tasks, set the same **exp_id** in `train.py`
 
 ### Travel Time Estimation (Fine-tuning)
 ```
-# Chengdu->porto
-python downstream_main.py --config chengdu --exp_id <SET_YOUR_ID> --task travel_time --device cuda:0 --transfer True --transfer_config porto
-
-# Porto->chengdu
-python downstream_main.py --config porto --exp_id <SET_YOUR_ID> --task travel_time --device cuda:0 --transfer True --transfer_config chengdu
+python downstream_main.py --config <SET_CITY> --transfer True --transfer_config <SET_ANOTHER_CITY> --exp_id <SET_YOUR_ID> --task travel_time --device cuda:0 
 ```
 
 ### Trajectory classification (Fine-tuning)
 ```
-# Chengdu->porto
-python downstream_main.py --config chengdu --exp_id <SET_YOUR_ID> --task classification --device cuda:0 --transfer True --transfer_config porto
-
-# Porto->chengdu
-python downstream_main.py --config porto --exp_id <SET_YOUR_ID> --task classification --device cuda:0 --transfer True --transfer_config chengdu
+python downstream_main.py --config <SET_CITY> --transfer True --transfer_config <SET_ANOTHER_CITY> --task classification --device cuda:0
 ```
 
 ### Most similar trajectory search (No Fine-tuning)
 ```
-# Chengdu->porto
-python downstream_main.py --config chengdu --exp_id <SET_YOUR_ID> --task similarity --device cuda:0 --transfer True --transfer_config porto
-
-# Porto->chengdu
-python downstream_main.py --config porto --exp_id <SET_YOUR_ID> --task similarity --device cuda:0 --transfer True --transfer_config chengdu
+python downstream_main.py --config <SET_CITY> --transfer True --transfer_config <SET_ANOTHER_CITY> --task similarity --device cuda:0
 ```
