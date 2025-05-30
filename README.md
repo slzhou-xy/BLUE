@@ -1,7 +1,6 @@
 # Blurred Encoding for Trajectory Representation Learning
 
-Since the trajectory data is too large, we only provide sample data in `./data`, and if the paper is accepted, we will open source code and data.
-
+(Full code and data will be released soon)[KDD2025(February Cycle)] The pytorch implementation of accepted paper "Blurred Encoding for Trajectory Representation Learning"
 
 ### Code directory
 
@@ -22,7 +21,7 @@ BLUE/
 ├── model/                   # model architecture
 │   ├── embedding.py
 │   └── network.py
-├── preprocess.py            # dataset preproces
+├── preprocess.py            # dataset preprocess
 ├── time_features.py         # get time feature
 ├── train.py                 # pre-train
 └── utils.py                 # some utility functions
