@@ -114,8 +114,6 @@ class Encoder(nn.Module):
         n_layers_s2 = args.n_layers_s2
 
         self.patchify = args.patchify
-        # self.max_patch_len_s2 = args.max_patch_len_s2
-        # self.max_patch_len_s3 = args.max_patch_len_s3
         self.cls = args.cls
 
         self.cls_token = None
