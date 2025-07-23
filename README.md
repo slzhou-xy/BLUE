@@ -1,6 +1,9 @@
 # Blurred Encoding for Trajectory Representation Learning
 
-(Full code and data will be released soon)[KDD2025(February Cycle)] The pytorch implementation of accepted paper "Blurred Encoding for Trajectory Representation Learning"
+[KDD2025(February Cycle)] The pytorch implementation of accepted paper "Blurred Encoding for Trajectory Representation Learning"
+
+### Data
+Porto dataset can be downloaded from [Google Driver](https://drive.google.com/file/d/1U0lSuE_on07WHTVoQBtjXe-ZyOf5CfG7/view?usp=drive_link).
 
 ### Code directory
 
