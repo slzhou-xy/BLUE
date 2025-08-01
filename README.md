@@ -44,6 +44,7 @@ python train.py --config <SET_CITY> --exp_id <SET_YOUR_ID> --device cuda:0
 When run the model for the downstream tasks, set the same **exp_id** in `train.py` as for pre-training.
 
 ### Travel Time Estimation (Fine-tuning)
+**The performance of Porto is extremely outstanding because its sampling frequency is fixed and remains at 15 seconds in the dataset. In contrast, Greed and Road blur the information about the sampling frequency, resulting in poor performance. The fine-tuning log of Porto is uploaded in the ./log/**
 ```
 python downstream_main.py --config <SET_CITY> --exp_id <SET_YOUR_ID> --task travel_time --device cuda:0 
 ```
