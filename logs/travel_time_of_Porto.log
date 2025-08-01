@@ -1,0 +1,114 @@
+[2025-1-12 21:26:19] [travel_time:86 train()] -> root = /home/silin/code/trajectory_data
+dataset_name = porto_gps
+traj_file = traj.parquet
+center = {'lon': -8.610792, 'lat': 41.149452}
+mbr = {'min_lon': -8.69, 'min_lat': 41.13, 'max_lon': -8.55, 'max_lat': 41.19}
+preprocess = True
+max_len = 256
+cls = True
+patchify = attn
+max_patch_len_s3 = 10
+max_patch_len_s2 = 40
+pos_type = sincos
+dropout = 0.1
+d_model = 128
+n_layers_s5 = 2
+n_layers_s3 = 4
+n_layers_s2 = 2
+n_heads = 4
+d_ff = 512
+seed = 42
+batch_size = 256
+lr = 0.0001
+optim = Adam
+scheduler = cos
+n_epochs = 30
+warmup_epoch = 10
+warmup_lr_init = 1e-06
+lr_min = 1e-06
+save_dir = ./logs/porto
+save_per = 1
+start_epoch = 0
+transfer = False
+transfer_config = config/chengdu.yaml
+config = config/porto.yaml
+exp_id = enlayer242_cross_bz256_epoch30_dim128_attn_1e-4
+task = travel_time
+probe_linear = False
+model_id = 29
+device = cuda:0
+patience = 7
+[2025-1-12 21:29:15] [travel_time:140 train()] -> Epoch: 0  | lr:  0.00000100
+[2025-1-12 21:29:15] [travel_time:141 train()] -> Train loss:  72.03558268 | train results: {'MAE': 432.5933, 'RMSE': 509.24262, 'MAPE': 0.69963}
+[2025-1-12 21:29:15] [travel_time:142 train()] -> Eval  loss:  54.41023639 | eval  results: {'MAE': 358.46463, 'RMSE': 442.55174, 'MAPE': 0.54751}
+[2025-1-12 21:31:48] [travel_time:140 train()] -> Epoch: 1  | lr:  0.00001090
+[2025-1-12 21:31:48] [travel_time:141 train()] -> Train loss:  17.57468270 | train results: {'MAE': 141.60287, 'RMSE': 251.533, 'MAPE': 0.19727}
+[2025-1-12 21:31:48] [travel_time:142 train()] -> Eval  loss:   3.19000325 | eval  results: {'MAE': 34.22214, 'RMSE': 107.14036, 'MAPE': 0.03805}
+[2025-1-12 21:34:21] [travel_time:140 train()] -> Epoch: 2  | lr:  0.00002080
+[2025-1-12 21:34:21] [travel_time:141 train()] -> Train loss:   1.18072560 | train results: {'MAE': 21.75312, 'RMSE': 65.19672, 'MAPE': 0.03439}
+[2025-1-12 21:34:21] [travel_time:142 train()] -> Eval  loss:   0.34335935 | eval  results: {'MAE': 9.35708, 'RMSE': 35.15126, 'MAPE': 0.01421}
+[2025-1-12 21:36:55] [travel_time:140 train()] -> Epoch: 3  | lr:  0.00003070
+[2025-1-12 21:36:55] [travel_time:141 train()] -> Train loss:   0.23760041 | train results: {'MAE': 13.56342, 'RMSE': 29.24656, 'MAPE': 0.02627}
+[2025-1-12 21:36:55] [travel_time:142 train()] -> Eval  loss:   0.12745064 | eval  results: {'MAE': 12.14263, 'RMSE': 21.42093, 'MAPE': 0.026}
+[2025-1-12 21:39:28] [travel_time:140 train()] -> Epoch: 4  | lr:  0.00004060
+[2025-1-12 21:39:28] [travel_time:141 train()] -> Train loss:   0.11357152 | train results: {'MAE': 11.92195, 'RMSE': 20.22022, 'MAPE': 0.02348}
+[2025-1-12 21:39:28] [travel_time:142 train()] -> Eval  loss:   0.08059475 | eval  results: {'MAE': 10.91497, 'RMSE': 17.03355, 'MAPE': 0.02061}
+[2025-1-12 21:42:00] [travel_time:140 train()] -> Epoch: 5  | lr:  0.00005050
+[2025-1-12 21:42:00] [travel_time:141 train()] -> Train loss:   0.08273680 | train results: {'MAE': 11.25213, 'RMSE': 17.2584, 'MAPE': 0.02199}
+[2025-1-12 21:42:00] [travel_time:142 train()] -> Eval  loss:   0.05622145 | eval  results: {'MAE': 8.69132, 'RMSE': 14.22622, 'MAPE': 0.01674}
+[2025-1-12 21:44:34] [travel_time:140 train()] -> Epoch: 6  | lr:  0.00006040
+[2025-1-12 21:44:34] [travel_time:141 train()] -> Train loss:   0.07103172 | train results: {'MAE': 10.69289, 'RMSE': 15.99107, 'MAPE': 0.02065}
+[2025-1-12 21:44:34] [travel_time:142 train()] -> Eval  loss:   0.05459510 | eval  results: {'MAE': 9.06394, 'RMSE': 14.01877, 'MAPE': 0.01803}
+[2025-1-12 21:47:07] [travel_time:140 train()] -> Epoch: 7  | lr:  0.00007030
+[2025-1-12 21:47:07] [travel_time:141 train()] -> Train loss:   0.06344952 | train results: {'MAE': 10.16175, 'RMSE': 15.11351, 'MAPE': 0.0194}
+[2025-1-12 21:47:07] [travel_time:142 train()] -> Eval  loss:   0.05088227 | eval  results: {'MAE': 8.17944, 'RMSE': 13.53326, 'MAPE': 0.01521}
+[2025-1-12 21:49:40] [travel_time:140 train()] -> Epoch: 8  | lr:  0.00008020
+[2025-1-12 21:49:40] [travel_time:141 train()] -> Train loss:   0.05924652 | train results: {'MAE': 9.82131, 'RMSE': 14.60437, 'MAPE': 0.01861}
+[2025-1-12 21:49:40] [travel_time:142 train()] -> Eval  loss:   0.08133747 | eval  results: {'MAE': 13.1221, 'RMSE': 17.11086, 'MAPE': 0.02741}
+[2025-1-12 21:52:14] [travel_time:140 train()] -> Epoch: 9  | lr:  0.00009010
+[2025-1-12 21:52:14] [travel_time:141 train()] -> Train loss:   0.05648893 | train results: {'MAE': 9.54552, 'RMSE': 14.26044, 'MAPE': 0.01797}
+[2025-1-12 21:52:14] [travel_time:142 train()] -> Eval  loss:   0.07334029 | eval  results: {'MAE': 12.36696, 'RMSE': 16.24795, 'MAPE': 0.02627}
+[2025-1-12 21:54:47] [travel_time:140 train()] -> Epoch: 10 | lr:  0.00007525
+[2025-1-12 21:54:47] [travel_time:141 train()] -> Train loss:   0.05188416 | train results: {'MAE': 9.07775, 'RMSE': 13.66686, 'MAPE': 0.01693}
+[2025-1-12 21:54:47] [travel_time:142 train()] -> Eval  loss:   0.04697748 | eval  results: {'MAE': 8.54072, 'RMSE': 13.00393, 'MAPE': 0.01733}
+[2025-1-12 21:57:20] [travel_time:140 train()] -> Epoch: 11 | lr:  0.00007063
+[2025-1-12 21:57:20] [travel_time:141 train()] -> Train loss:   0.05020317 | train results: {'MAE': 8.88995, 'RMSE': 13.44364, 'MAPE': 0.0165}
+[2025-1-12 21:57:20] [travel_time:142 train()] -> Eval  loss:   0.04433170 | eval  results: {'MAE': 7.82136, 'RMSE': 12.63249, 'MAPE': 0.01448}
+[2025-1-12 21:59:53] [travel_time:140 train()] -> Epoch: 12 | lr:  0.00006580
+[2025-1-12 21:59:53] [travel_time:141 train()] -> Train loss:   0.04876581 | train results: {'MAE': 8.71353, 'RMSE': 13.24979, 'MAPE': 0.01608}
+[2025-1-12 21:59:53] [travel_time:142 train()] -> Eval  loss:   0.03921424 | eval  results: {'MAE': 7.47138, 'RMSE': 11.88104, 'MAPE': 0.01265}
+[2025-1-12 22:02:27] [travel_time:140 train()] -> Epoch: 13 | lr:  0.00006079
+[2025-1-12 22:02:27] [travel_time:141 train()] -> Train loss:   0.04705857 | train results: {'MAE': 8.53673, 'RMSE': 13.01579, 'MAPE': 0.01569}
+[2025-1-12 22:02:27] [travel_time:142 train()] -> Eval  loss:   0.03946886 | eval  results: {'MAE': 6.9984, 'RMSE': 11.91951, 'MAPE': 0.012}
+[2025-1-12 22:05:00] [travel_time:140 train()] -> Epoch: 14 | lr:  0.00005567
+[2025-1-12 22:05:00] [travel_time:141 train()] -> Train loss:   0.04635469 | train results: {'MAE': 8.43338, 'RMSE': 12.91808, 'MAPE': 0.01544}
+[2025-1-12 22:05:00] [travel_time:142 train()] -> Eval  loss:   0.04543077 | eval  results: {'MAE': 7.29168, 'RMSE': 12.78787, 'MAPE': 0.01218}
+[2025-1-12 22:07:33] [travel_time:140 train()] -> Epoch: 15 | lr:  0.00005050
+[2025-1-12 22:07:33] [travel_time:141 train()] -> Train loss:   0.04478714 | train results: {'MAE': 8.26428, 'RMSE': 12.69778, 'MAPE': 0.01507}
+[2025-1-12 22:07:33] [travel_time:142 train()] -> Eval  loss:   0.04577439 | eval  results: {'MAE': 7.81259, 'RMSE': 12.83622, 'MAPE': 0.01451}
+[2025-1-12 22:10:07] [travel_time:140 train()] -> Epoch: 16 | lr:  0.00004533
+[2025-1-12 22:10:07] [travel_time:141 train()] -> Train loss:   0.04432081 | train results: {'MAE': 8.20521, 'RMSE': 12.6315, 'MAPE': 0.01493}
+[2025-1-12 22:10:07] [travel_time:142 train()] -> Eval  loss:   0.03916275 | eval  results: {'MAE': 6.71756, 'RMSE': 11.87306, 'MAPE': 0.01139}
+[2025-1-12 22:12:41] [travel_time:140 train()] -> Epoch: 17 | lr:  0.00004021
+[2025-1-12 22:12:41] [travel_time:141 train()] -> Train loss:   0.04345750 | train results: {'MAE': 8.10248, 'RMSE': 12.50788, 'MAPE': 0.0147}
+[2025-1-12 22:12:41] [travel_time:142 train()] -> Eval  loss:   0.04337305 | eval  results: {'MAE': 7.62182, 'RMSE': 12.49502, 'MAPE': 0.01238}
+[2025-1-12 22:15:15] [travel_time:140 train()] -> Epoch: 18 | lr:  0.00003520
+[2025-1-12 22:15:15] [travel_time:141 train()] -> Train loss:   0.04294660 | train results: {'MAE': 8.02593, 'RMSE': 12.43414, 'MAPE': 0.01452}
+[2025-1-12 22:15:15] [travel_time:142 train()] -> Eval  loss:   0.04300962 | eval  results: {'MAE': 7.24978, 'RMSE': 12.44236, 'MAPE': 0.01305}
+[2025-1-12 22:17:47] [travel_time:140 train()] -> Epoch: 19 | lr:  0.00003037
+[2025-1-12 22:17:47] [travel_time:141 train()] -> Train loss:   0.04221695 | train results: {'MAE': 7.93168, 'RMSE': 12.32806, 'MAPE': 0.0143}
+[2025-1-12 22:17:47] [travel_time:142 train()] -> Eval  loss:   0.04046160 | eval  results: {'MAE': 7.62937, 'RMSE': 12.06841, 'MAPE': 0.01258}
+[2025-1-12 22:20:21] [travel_time:140 train()] -> Epoch: 20 | lr:  0.00002575
+[2025-1-12 22:20:21] [travel_time:141 train()] -> Train loss:   0.04168332 | train results: {'MAE': 7.87206, 'RMSE': 12.2499, 'MAPE': 0.01417}
+[2025-1-12 22:20:21] [travel_time:142 train()] -> Eval  loss:   0.04527323 | eval  results: {'MAE': 8.20287, 'RMSE': 12.76573, 'MAPE': 0.01334}
+[2025-1-12 22:22:54] [travel_time:140 train()] -> Epoch: 21 | lr:  0.00002140
+[2025-1-12 22:22:54] [travel_time:141 train()] -> Train loss:   0.04122995 | train results: {'MAE': 7.81876, 'RMSE': 12.18309, 'MAPE': 0.01405}
+[2025-1-12 22:22:54] [travel_time:142 train()] -> Eval  loss:   0.04155651 | eval  results: {'MAE': 6.83288, 'RMSE': 12.23045, 'MAPE': 0.01157}
+[2025-1-12 22:25:27] [travel_time:140 train()] -> Epoch: 22 | lr:  0.00001738
+[2025-1-12 22:25:27] [travel_time:141 train()] -> Train loss:   0.04081682 | train results: {'MAE': 7.7712, 'RMSE': 12.1219, 'MAPE': 0.01393}
+[2025-1-12 22:25:27] [travel_time:142 train()] -> Eval  loss:   0.04543471 | eval  results: {'MAE': 7.44715, 'RMSE': 12.78827, 'MAPE': 0.01241}
+[2025-1-12 22:28:00] [travel_time:140 train()] -> Epoch: 23 | lr:  0.00001371
+[2025-1-12 22:28:00] [travel_time:141 train()] -> Train loss:   0.04029862 | train results: {'MAE': 7.69768, 'RMSE': 12.04471, 'MAPE': 0.01378}
+[2025-1-12 22:28:00] [travel_time:142 train()] -> Eval  loss:   0.04349027 | eval  results: {'MAE': 8.00495, 'RMSE': 12.51174, 'MAPE': 0.01322}
+[2025-1-12 22:28:01] [travel_time:157 train()] -> Early stopping at epoch 23 with loss 0.04349027228232633
+[2025-1-12 22:28:14] [travel_time:166 train()] -> Test results: {'MAE': 6.75692, 'RMSE': 12.06069, 'MAPE': 0.01142}
