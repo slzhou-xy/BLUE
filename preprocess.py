@@ -18,6 +18,7 @@ class DataPreprocess:
         self.data_save_dir = os.path.join(self.root, self.dataset_name)
         self.max_patch_len_s2 = 0
         self.max_patch_len_s3 = 0
+        self.max_len = args.max_len
 
     def _get_points_feature(self, gps_seq, time_seq, geodesic):
         assert len(gps_seq) == len(time_seq)
