@@ -12,6 +12,7 @@ mbr:
 
 # preprocess params
 preprocess: TRUE
+max_len: 256
 
 # model params
 cls: TRUE
